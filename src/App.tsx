@@ -1,6 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+import SideNav from "./components/SideNav";
+
 function App() {
   return (
     <>
+      <SideNav />
+      <Routes>
+        <Route path="/cart">cart</Route>
+      </Routes>
       {/* Sidenav
         //  Logo
         //  Tabs
