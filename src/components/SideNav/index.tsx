@@ -1,6 +1,5 @@
-import { Link as RouteLink } from "react-router-dom";
 import { Link } from "@chakra-ui/react";
-
+import { Link as RouteLink } from "react-router-dom";
 const SideNav = () => {
   return (
     <header>
