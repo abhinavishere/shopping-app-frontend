@@ -20,3 +20,21 @@
 
 - Shoppingify API Repository found [here](https://github.com/abhinavishere/shopping-list-api)
 - Shoppingify Client Repository found [here](https://github.com/abhinavishere/shopping-list-frontend.git)
+
+  /_ Sidenav
+  // Logo
+  // Tabs
+  // Cart Button (Toggle)
+  _/
+
+  /_ Main
+  // Header at top (Title + Search form to filter products)
+  // Products List at bottom
+  _/
+
+  /_ Aside
+  // User Profile
+  // Product details
+  // New Item Form
+  // Shopping List
+  _/

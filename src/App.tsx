@@ -1,42 +1,23 @@
 import { Route, Routes } from "react-router-dom";
-import SideNav from "./components/SideNav";
-
-const Demo = () => {
-  return <h1>Demo</h1>;
-};
+import SideNav from "./components/SideNav/SideNav";
+import { Flex } from "@chakra-ui/react";
+import ItemsDrawer from "./components/ItemsDrawer/ItemsDrawer";
+import History from "./components/History/History";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
     <>
-      <SideNav />
-      <Routes>
-        {/* <Route path="/" element={<SideNav />} /> */}
-        <Route path="/cart" element={<Demo />} />
-      </Routes>
+      <Flex>
+        <SideNav />
+        <Routes>
+          <Route path="/products" element={<ItemsDrawer />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Flex>
     </>
   );
 }
 
 export default App;
-
-{
-  /* Sidenav
-        //  Logo
-        //  Tabs
-        //  Cart Button (Toggle)
-      */
-}
-{
-  /* Main
-          // Header at top (Title + Search form to filter products)
-          // Products List at bottom
-      */
-}
-{
-  /* Aside
-        //  User Profile 
-        //  Product details
-        //  New Item Form
-        // Shopping List
-      */
-}
