@@ -1,54 +1,66 @@
-import {
-  FormControl,
-  Grid,
-  GridItem,
-  Highlight,
-  Input,
-  Text,
-} from "@chakra-ui/react";
-
-const flexRules = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
+import { Flex, FormControl, Highlight, Input, Text } from "@chakra-ui/react";
+import ItemsList from "./ItemsList";
+import { getProductsData } from "../../data/data";
 
 const ItemsDrawer = () => {
+  const products = getProductsData();
+
   return (
-    <Grid
+    <Flex
       as="section"
-      flexGrow="1"
-      templateColumns="repeat(5, 1fr)"
-      templateRows={"repeat(5, 1fr)"}
-      p={"2rem"}
+      paddingInline={{ base: "0.75rem", md: "2rem" }}
+      paddingBlock={{ base: "2rem", md: "2rem" }}
       bgColor={"secondary"}
+      flexDirection={"column"}
+      h={"100vh"}
+      w="full"
+      marginLeft={{ base: "4rem", md: "5.5rem" }}
+      gap={"2rem"}
     >
-      <GridItem
-        colSpan={3}
-        rowSpan={1}
-        {...flexRules}
-        justifyContent={"flex-start"}
+      {/* PageHeader */}
+      <Flex
+        flexDirection={{ base: "column", sm: "row" }}
+        gap={"2.2rem"}
+        alignItems={"center"}
+        justifyContent="space-between"
       >
-        <Text
-          maxW={"25rem"}
-          fontSize={"2xl"}
-          fontWeight="bold"
-          justifySelf={"flex-start"}
-        >
+        <Text maxW={"25rem"} fontSize={"2xl"} fontWeight="bold">
           <Highlight query={"Shoppingify"} styles={{ color: "primary" }}>
             Shoppingify
           </Highlight>{" "}
           allows you take your shopping list wherever you go
         </Text>
-      </GridItem>
-      <GridItem colSpan={2} rowSpan={1} {...flexRules}>
-        {/* Default Form Input */}
-        <FormControl display={"flex"} alignItems={"center"}>
-          <Input placeholder="Search Items" />
+
+        <FormControl maxW={{ base: "full", md: "20rem" }} bgColor={"#fff"}>
+          <Input
+            border={"2px solid #aaa"}
+            placeholder="Search Items"
+            fontFamily={"inherit"}
+          />
         </FormControl>
-      </GridItem>
-      <GridItem colSpan={5} rowSpan={4}></GridItem>
-    </Grid>
+      </Flex>
+      {/* Products List */}
+      <Flex
+        flexDirection={"column"}
+        gap={"3rem"}
+        overflowX={"hidden"}
+        overflowY="scroll"
+        sx={{
+          "::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+      >
+        {products &&
+          products.map((item: any, index) => (
+            <ItemsList
+              category={item.category}
+              key={index}
+              items={item.items}
+            />
+          ))}
+      </Flex>
+    </Flex>
   );
 };
 

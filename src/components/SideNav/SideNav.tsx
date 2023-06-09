@@ -1,25 +1,33 @@
-import { Button, Flex, Icon, IconButton, Image, Link } from "@chakra-ui/react";
+import { Flex, Icon, IconButton, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import ItemsIcon from "../../utils/Icons/ItemsIcon";
 import HistoryIcon from "../../utils/Icons/HistoryIcon";
 import StatsIcon from "../../utils/Icons/StatsIcon";
 import CartIcon from "../../utils/Icons/CartIcon";
-import SideNavLink from "../SideNavLink/SideNavLink";
+import Link from "../Link/Link";
+import { useContext } from "react";
+import { CartDispatchContext } from "../../context/CartContext";
 
 const SideNav = () => {
+  const { setIsOpen } = useContext(CartDispatchContext);
   return (
     <Flex
       as="header"
-      w="5.5rem"
+      w={{ base: "4rem", md: "5.5rem" }}
       h="100vh"
       flexDirection="column"
       flexShrink={0}
       alignItems="center"
       paddingBlock="1.75rem"
       justifyContent={"space-between"}
+      position="fixed"
+      left="0"
+      top="0"
+      bottom="0"
+      bgColor={"white"}
     >
       <Flex w="100%" justifyContent={"center"}>
-        <Link as={NavLink} to={"/products"}>
+        <Link as={NavLink} path={"/"}>
           <Image src="/shoppingifyLogo.svg" />
         </Link>
       </Flex>
@@ -31,9 +39,30 @@ const SideNav = () => {
         alignItems="center"
         gap={"4.5rem"}
       >
-        <SideNavLink path="/products" element={<ItemsIcon />} />
-        <SideNavLink path="/history" element={<HistoryIcon />} />
-        <SideNavLink path="/dashboard" element={<StatsIcon />} />
+        <Link
+          as={NavLink}
+          path="/products"
+          hasTooltip={true}
+          tooltipLabel="Items"
+          hasIcon={true}
+          iconEl={<ItemsIcon />}
+        />
+        <Link
+          as={NavLink}
+          path="/history"
+          hasTooltip={true}
+          tooltipLabel="History"
+          hasIcon={true}
+          iconEl={<HistoryIcon />}
+        />
+        <Link
+          as={NavLink}
+          path="/dashboard"
+          hasTooltip={true}
+          tooltipLabel="Stats"
+          hasIcon={true}
+          iconEl={<StatsIcon />}
+        />
       </Flex>
 
       <IconButton
@@ -49,19 +78,12 @@ const SideNav = () => {
           </Icon>
         }
         aria-label={"Cart Icon"}
+        onClick={() => {
+          setIsOpen((state) => !state);
+        }}
       />
     </Flex>
   );
 };
 
 export default SideNav;
-
-// _before={{
-//   content: "''",
-//   position: "absolute",
-//   width: "6px",
-//   height: "45.98px",
-//   left: "0px",
-//   background: "#F9A109",
-//   borderRadius: "0px 4px 4px 0px",
-// }}

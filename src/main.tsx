@@ -7,12 +7,15 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./utils/theme";
 // Supports weights 300-700
 import "@fontsource-variable/quicksand";
+import { CartProvider } from "./context/CartContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <Router>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </Router>
     </ChakraProvider>
   </React.StrictMode>
