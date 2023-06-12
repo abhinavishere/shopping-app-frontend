@@ -4,23 +4,24 @@ import { Flex } from "@chakra-ui/react";
 import ItemsDrawer from "./components/ItemsDrawer/ItemsDrawer";
 import History from "./components/History/History";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Aside from "./components/Aside/Aside";
-import { useContext } from "react";
-import { CartContext } from "./context/CartContext";
+import { useListContext } from "./context/ListContext";
+import Layout from "./components/Layout/Layout";
+import SideDrawer from "./components/SideDrawer/SideDrawer";
 
 function App() {
-  const ctx = useContext(CartContext);
+  const ctx = useListContext();
   return (
     <>
       <Flex>
         <SideNav />
         <Routes>
-          <Route path="/" element={<Navigate to="/products" />} />
-          <Route path="/products" element={<ItemsDrawer />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="products" element={<ItemsDrawer />} />
+            <Route path="history" element={<History />} />
+            <Route path="dashboard" element={<Dashboard />} />
+          </Route>
         </Routes>
-        {ctx.isOpen && <Aside />}
+        {ctx?.isOpen && <SideDrawer />}
       </Flex>
     </>
   );

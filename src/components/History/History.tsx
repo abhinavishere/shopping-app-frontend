@@ -1,7 +1,5 @@
-import React from "react";
-
 const History = () => {
-  return <div>History</div>;
+  return <h1>Coming Soon</h1>;
 };
 
 export default History;

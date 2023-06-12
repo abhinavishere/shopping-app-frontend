@@ -5,11 +5,10 @@ import HistoryIcon from "../../utils/Icons/HistoryIcon";
 import StatsIcon from "../../utils/Icons/StatsIcon";
 import CartIcon from "../../utils/Icons/CartIcon";
 import Link from "../Link/Link";
-import { useContext } from "react";
-import { CartDispatchContext } from "../../context/CartContext";
+import { useListDispatchContext } from "../../context/ListContext";
 
 const SideNav = () => {
-  const { setIsOpen } = useContext(CartDispatchContext);
+  const { setIsOpen } = useListDispatchContext();
   return (
     <Flex
       as="header"
@@ -78,9 +77,7 @@ const SideNav = () => {
           </Icon>
         }
         aria-label={"Cart Icon"}
-        onClick={() => {
-          setIsOpen((state) => !state);
-        }}
+        onClick={() => setIsOpen((state: any) => !state)}
       />
     </Flex>
   );
